@@ -13,30 +13,15 @@ const geistMono = localFont({
 });
 
 export async function getServerSideProps() {
-  try {
-    // Fetching data from your internal API endpoint
-    const res = await fetch('https://backendnext-hazel.vercel.app//api/users'); // Use your internal API route
-    if (!res.ok) {
-      throw new Error('Failed to fetch data from internal API');
-    }
-    const data = await res.json();
-
-    return {
-      props: {
-        data, // Pass fetched data to the page component as props
-      },
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      props: {
-        data: null, // Return null or handle the error as needed
-      },
-    };
-  }
+  const res = await fetch('http://localhost:3000/api/user'); // Fetch data from your API
+  const data = await res.json(); // Parse the JSON data
+  return { props: { users: data } }; // Pass data to your component
 }
 
 export default function Home({ users }) {
+
+  console.log(users)
+
   return (
     <div
       className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
@@ -63,9 +48,7 @@ export default function Home({ users }) {
         <div>
           <h1>User List</h1>
           <ul>
-            {users.map((user, index) => (
-              <li key={index}>{user.Player}</li>
-            ))}
+            {users[0].Player}
           </ul>
         </div>
       </main>
