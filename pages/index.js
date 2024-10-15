@@ -46,7 +46,7 @@ export default function Home({ users }) {
           <li>Save and see your changes instantly.</li>
         </ol>
         <div>
-          <h1>User List</h1>
+          <h1>User Test</h1>
           <ul>
             {users[0].Player}
           </ul>
