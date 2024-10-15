@@ -14,23 +14,23 @@ const geistMono = localFont({
 
 export async function getServerSideProps() {
   try {
-    // Fetching data from the production API URL
-    const res = await fetch('https://script.google.com/macros/s/AKfycbzzlL52v_BgUWkxo_paVwl0HDBDdOgwVZGxiC31Qdpb7q1tXvOZaI8X8PVmbjESj_Xh/exec'); // Adjusted URL
+    // Fetching data from your internal API endpoint
+    const res = await fetch('https://backendnext-hazel.vercel.app//api/users'); // Use your internal API route
     if (!res.ok) {
-      throw new Error('Failed to fetch users');
+      throw new Error('Failed to fetch data from internal API');
     }
-    const users = await res.json();
+    const data = await res.json();
 
     return {
       props: {
-        users, // Pass users to the page component as props
+        data, // Pass fetched data to the page component as props
       },
     };
   } catch (error) {
     console.error(error);
     return {
       props: {
-        users: [], // Return an empty array or handle the error as needed
+        data: null, // Return null or handle the error as needed
       },
     };
   }
