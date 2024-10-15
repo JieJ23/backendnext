@@ -13,7 +13,7 @@ const geistMono = localFont({
 });
 
 export async function getServerSideProps() {
-  const res = await fetch('http://localhost:3000/api/user'); // Fetch data from your API
+  const res = await fetch('https://backendnext-hazel.vercel.app/api/user'); // Fetch data from your API
   const data = await res.json(); // Parse the JSON data
   return { props: { users: data } }; // Pass data to your component
 }
